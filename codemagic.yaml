@@ -1,0 +1,19 @@
+workflows:
+  ios-taxi-app:
+    name: TaxiApp iOS Build
+    max_build_duration: 60
+    environment:
+      xcode: latest
+      vars:
+        BUNDLE_ID: "com.yourname.taxiapp"
+    scripts:
+      - name: Build iOS app
+        script: |
+          xcodebuild clean build \
+          -scheme TaxiApp \
+          -sdk iphoneos \
+          -configuration Release \
+          CODE_SIGNING_ALLOWED=NO
+    artifacts:
+      - build/**/*.app
+      - build/**/*.ipa
